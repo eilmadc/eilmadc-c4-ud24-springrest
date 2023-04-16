@@ -59,4 +59,5 @@
 		</plugins>
 	</build>
 
+	<url>localhost:8181</url>
 </project>
