@@ -6,3 +6,4 @@ create table employee(
 );
 
 insert into employee(nombre, trabajo, salario)values('Ana', null , null);
+insert into employee(nombre, trabajo, salario)values('Juan', 'ADMINISTRADOR' , 42000);

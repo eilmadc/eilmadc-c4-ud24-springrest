@@ -1,10 +1,13 @@
 /**
  * C4-UD24-Spring Resftul
  */
-package dto;
+package com.crud.h2.dto;
 
+import com.crud.h2.controller.Jobs;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,10 +30,10 @@ public class Employee {
 	private long id;
 	@Column(name = "nombre")
 	private String nombre;
-	@Column(name = "trabajo")
+	@Column(name="trabajo")
 	private String trabajo;
 	@Column(name = "salario")
-	private Double salario;
+	private double salario;
 
 	// -----------Constructores-------------------
 	/**
@@ -43,12 +46,13 @@ public class Employee {
 	/**
 	 * Constructor con parametros
 	 * 
+	 * @param id
 	 * @param nombre
 	 * @param trabajo
 	 * @param salario
 	 */
-	public Employee(String nombre, String trabajo, Double salario) {
-		super();
+	public Employee(Long id, String nombre, String trabajo, Double salario) {
+		this.id = id;
 		this.nombre = nombre;
 		this.trabajo = trabajo;
 		this.salario = salario;
@@ -80,6 +84,11 @@ public class Employee {
 	 * @param trabajo the trabajo to set
 	 */
 	public void setTrabajo(String trabajo) {
+		Jobs jobs= null;
+		if (jobs.equals(trabajo)) {
+			setSalario(jobs.valueOf(trabajo).pay());
+		}
+
 		this.trabajo = trabajo;
 	}
 
@@ -93,7 +102,7 @@ public class Employee {
 	/**
 	 * @param salario the salario to set
 	 */
-	public void setSalario(Double salario) {
+	public void setSalario(double salario) {
 		this.salario = salario;
 	}
 
@@ -103,4 +112,13 @@ public class Employee {
 	public long getId() {
 		return id;
 	}
+
+	/*
+	 * Print in console
+	 */
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", nombre=" + nombre + ", trabajo=" + trabajo + ", salario=" + salario + "]";
+	}
+
 }
