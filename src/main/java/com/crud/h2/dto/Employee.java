@@ -3,11 +3,8 @@
  */
 package com.crud.h2.dto;
 
-import com.crud.h2.controller.Jobs;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,7 +30,7 @@ public class Employee {
 	@Column(name="trabajo")
 	private String trabajo;
 	@Column(name = "salario")
-	private double salario;
+	public double salario;
 
 	// -----------Constructores-------------------
 	/**
@@ -84,25 +81,38 @@ public class Employee {
 	 * @param trabajo the trabajo to set
 	 */
 	public void setTrabajo(String trabajo) {
-		Jobs jobs= null;
-		if (jobs.equals(trabajo)) {
-			setSalario(jobs.valueOf(trabajo).pay());
-		}
-
+		
 		this.trabajo = trabajo;
 	}
 
 	/**
 	 * @return the salario
 	 */
-	public Double getSalario() {
+	public double getSalario() {
 		return salario;
 	}
 
 	/**
 	 * @param salario the salario to set
 	 */
-	public void setSalario(double salario) {
+	public void setSalario() {
+		System.out.println(trabajo);
+		for(Jobs j : Jobs.values() ) {
+			if(j.name().equals(trabajo)) {
+
+				System.out.println(j);
+				System.out.println(Jobs.valueOf(trabajo).pay());
+
+				this.salario=Jobs.valueOf(trabajo).pay();
+			}
+		}
+		
+		/*
+		 * Jobs jobs= new Jobs(); if (jobs.equals(trabajo)) {
+		 * System.out.println(jobs.valueOf(trabajo).pay());
+		 * setSalario(jobs.valueOf(trabajo).pay()); }
+		 */
+		
 		this.salario = salario;
 	}
 

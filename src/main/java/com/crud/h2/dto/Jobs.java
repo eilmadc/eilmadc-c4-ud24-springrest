@@ -1,7 +1,7 @@
 /**
  * C4-UD24-Spring Resftul
  */
-package com.crud.h2.controller;
+package com.crud.h2.dto;
 
 /**
  * @author elena-01
@@ -34,6 +34,11 @@ public enum Jobs {
 		}
 	};
 	
+	/*
+	 * public final String label;
+	 * 
+	 * private Element(String label) { this.label = label; }
+	 */
 	public abstract double pay();
 
 }
