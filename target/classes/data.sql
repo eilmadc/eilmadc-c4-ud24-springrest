@@ -5,6 +5,5 @@ create table employee(
     salario double
 );
 
-insert into employee(nombre, trabajo, salario)values('Ana', null , null);
 insert into employee(nombre, trabajo, salario)values('Juan', 'ADMINISTRADOR' , 42000);
 insert into employee(nombre, trabajo, salario)values('Maria', 'DIRECTOR' , 47000);

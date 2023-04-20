@@ -27,7 +27,7 @@ public class Employee {
 	private long id;
 	@Column(name = "nombre")
 	private String nombre;
-	@Column(name="trabajo")
+	@Column(name = "trabajo")
 	private String trabajo;
 	@Column(name = "salario")
 	public double salario;
@@ -81,7 +81,7 @@ public class Employee {
 	 * @param trabajo the trabajo to set
 	 */
 	public void setTrabajo(String trabajo) {
-		
+
 		this.trabajo = trabajo;
 	}
 
@@ -89,30 +89,13 @@ public class Employee {
 	 * @return the salario
 	 */
 	public double getSalario() {
-		return salario;
+		return getSalarioEnum(trabajo);
 	}
 
 	/**
 	 * @param salario the salario to set
 	 */
-	public void setSalario() {
-		System.out.println(trabajo);
-		for(Jobs j : Jobs.values() ) {
-			if(j.name().equals(trabajo)) {
-
-				System.out.println(j);
-				System.out.println(Jobs.valueOf(trabajo).pay());
-
-				this.salario=Jobs.valueOf(trabajo).pay();
-			}
-		}
-		
-		/*
-		 * Jobs jobs= new Jobs(); if (jobs.equals(trabajo)) {
-		 * System.out.println(jobs.valueOf(trabajo).pay());
-		 * setSalario(jobs.valueOf(trabajo).pay()); }
-		 */
-		
+	public void setSalario(double salario) {
 		this.salario = salario;
 	}
 
@@ -131,4 +114,17 @@ public class Employee {
 		return "Employee [id=" + id + ", nombre=" + nombre + ", trabajo=" + trabajo + ", salario=" + salario + "]";
 	}
 
+	/*
+	 * Get the salary relationed with Job in Enum from pay() funcion in enum.
+	 */
+	public double getSalarioEnum(String trabajo) {
+		System.out.println(trabajo);
+		for (Jobs j : Jobs.values()) {
+			if (j.name().equals(trabajo)) {
+				salario = Jobs.valueOf(trabajo).pay();
+			}
+		}
+		return salario;
+
+	}
 }

@@ -42,7 +42,8 @@ public class EmployeeController {
 	 * CREATE: Save an employee
 	 */
 	@PostMapping("/employees")
-	public Employee saveEmployee(Employee employee) {
+	public Employee saveEmployee(@RequestBody Employee employee) {
+		employee.setSalario(employee.getSalario());
 		return employeeServiceImpl.saveEmployee(employee);
 	}
 
@@ -75,17 +76,17 @@ public class EmployeeController {
 		Employee employee_selected = new Employee();
 		Employee employee_updated = new Employee();
 		try {
-		employee_selected = employeeServiceImpl.employeeById(id);
+			employee_selected = employeeServiceImpl.employeeById(id);
 
-		employee_selected.setNombre(employee.getNombre());
-		employee_selected.setSalario();
-		employee_selected.setTrabajo(employee.getTrabajo());
+			employee_selected.setNombre(employee.getNombre());
+			employee_selected.setTrabajo(employee.getTrabajo());
+			employee_selected.setSalario(employee.getSalario());
 
-		employee_updated = employeeServiceImpl.updateEmployee(employee_selected);
-		}catch(Exception e) {
+			employee_updated = employeeServiceImpl.updateEmployee(employee_selected);
+		} catch (Exception e) {
 			System.out.println(e);
 		}
-		
+
 		System.out.println("El employee actualizado es: " + employee_updated);
 
 		return employee_updated;
